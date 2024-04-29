@@ -7,8 +7,8 @@ import Container from "react-bootstrap/esm/Container";
 
 export default function Detailspage() {
   const { countryname } = useParams();
-  const { CountryData, theme } = useContext(Globalcontext);
-  const singlecountry = CountryData.filter((item) => {
+  const { filteredData, theme } = useContext(Globalcontext);
+  const singlecountry = filteredData.filter((item) => {
     return item.name === countryname;
   });
 
@@ -30,11 +30,7 @@ export default function Detailspage() {
           }
         >
           <div className="col-md-6 img-container">
-            <img
-              className="img-fluid"
-              src={singlecountry[0].flags.svg}
-              alt=""
-            />
+            <img className="img-fluid" src={singlecountry[0].flag} alt="" />
           </div>
           <div className="col-md-6">
             <h2>{singlecountry[0].name}</h2>

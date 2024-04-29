@@ -1,12 +1,15 @@
 import { createContext, useEffect, useState } from "react";
-import { CountryData } from "./data";
 export const Globalcontext = createContext(null);
 
 export function Globalstate({ children }) {
   const [theme, settheme] = useState(false);
   const [searchinput, setsearchinput] = useState("");
+  const [data, setdata] = useState([]);
 
   useEffect(() => {
+    fetch("./data.json")
+      .then((res) => res.json())
+      .then((data) => setdata(data));
     if (localStorage.getItem("mode") === null) {
       localStorage.setItem("mode", Boolean(theme));
     } else {
@@ -18,7 +21,7 @@ export function Globalstate({ children }) {
   }, []);
 
   const handlefilter = (value) => {
-    const filter = CountryData.filter((item) => {
+    const filter = data.filter((item) => {
       if (value === "") {
         return item;
       } else {
@@ -42,7 +45,7 @@ export function Globalstate({ children }) {
       value={{
         theme,
         settheme,
-        CountryData,
+        data,
         filteredData,
         searchinput,
         handlesearch,
