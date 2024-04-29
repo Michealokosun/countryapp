@@ -18,7 +18,7 @@ function Cards() {
               onClick={() => navigate(`/${item.name}`)}
               style={{ width: "18rem", paddingBottom: 30 }}
             >
-              <Card.Img variant="top" src={item.flag} />
+              {/* <Card.Img variant="top" src={item.flag} /> */}
               <Card.Body style={{ marginLeft: 20, marginTop: 10 }}>
                 <Card.Title>{item.name}</Card.Title>
                 <Card.Text>
